@@ -1,14 +1,15 @@
 from django.db import models
 from nomadgram.users import models as users_model
 
-class TimeStampModel(models.Model):
+class TimeStampedModel(models.Model):
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
 
-class Image(TimeStampModel):
+class Image(TimeStampedModel):
 
     """ Image Model """
 
@@ -17,7 +18,7 @@ class Image(TimeStampModel):
     caption = models.TextField()
     creator = models.ForeignKey(users_model.User, on_delete=models.PROTECT, null=True)
 
-class Comment(TimeStampModel):
+class Comment(TimeStampedModel):
 
     """ Comment Model """
 
@@ -26,7 +27,7 @@ class Comment(TimeStampModel):
     image = models.ForeignKey(Image, on_delete=models.PROTECT, null=True)
 
 
-class Like(TimeStampModel):
+class Like(TimeStampedModel):
 
     """ Like Model """
 
