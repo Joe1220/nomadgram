@@ -8,6 +8,6 @@ class ListAllImages(APIView):
 
         all_images = models.Image.objects.all()
 
-        serializer = serializers.ImageSerializers(all_images, many=True)
+        serializer = serializers.ImageSerializer(all_images, many=True)
 
         return Response(data=serializer.data)
