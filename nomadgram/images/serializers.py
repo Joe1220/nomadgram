@@ -7,7 +7,6 @@ class ImageSerializers(serializers.Serializer):
         model = models.Image
         fields = '__all__'
 
-
 class CommentSerializer(serializers.Serializer):
 
     class Meta:
