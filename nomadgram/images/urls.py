@@ -5,18 +5,8 @@ app_name = 'images'
 
 urlpatterns = [
     url(
-        regex=r'^all/$',
-        view=views.ListAllImages.as_view(),
-        name='all_images'
-    ),
-    url(
-        regex=r'^comments/$',
-        view=views.ListallComments.as_view(),
-        name='all_comments'
-    ),
-    url(
-        regex=r'^likes/$',
-        view=views.ListAllLikes.as_view(),
-        name='all_likes'
+        regex=r'^$',
+        view=views.Feed.as_view(),
+        name='feed'
     ),
 ]
