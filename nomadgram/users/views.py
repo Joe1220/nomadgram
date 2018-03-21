@@ -93,4 +93,3 @@ class UserFollowing(APIView):
         serializer = serializers.ListUserSerializer(user_following, many=True)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
-

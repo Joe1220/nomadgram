@@ -1,5 +1,6 @@
 from django.db import models
 from nomadgram.users import models as users_model
+from taggit.managers import TaggableManager
 
 class TimeStampedModel(models.Model):
 
@@ -17,6 +18,7 @@ class Image(TimeStampedModel):
     location = models.CharField(max_length=140)
     caption = models.TextField()
     creator = models.ForeignKey(users_model.User, on_delete=models.PROTECT, null=True, related_name='images')
+    tags = TaggableManager()
 
     @property
     def like_count(self):
