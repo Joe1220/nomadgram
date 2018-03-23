@@ -26,7 +26,7 @@ TIME_ZONE = 'Asia/Seoul'
 # https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = 'en-us'
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
-SITE_ID = 1
+SITE_ID = 2
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
 USE_I18N = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-l10n
@@ -63,10 +63,10 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
-    'crispy_forms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
     'rest_framework',
     'rest_framework.authtoken',
     'taggit',
@@ -243,8 +243,9 @@ ACCOUNT_ADAPTER = 'nomadgram.users.adapters.AccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'nomadgram.users.adapters.SocialAccountAdapter'
 
 
-# Your stuff...
+# Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+TAGGIT_CASE_INSENSITIVE = True
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -255,7 +256,8 @@ REST_FRAMEWORK = {
     ),
 }
 
-TAGGIT_CASE_INSENSITIVE = True
+
 REST_USE_JWT = True
 ACCOUNT_LOGOUT_ON_GET = True
 
+SOCIALACCOUNT_QUERY_EMAIL = True
