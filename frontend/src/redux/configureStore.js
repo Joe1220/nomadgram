@@ -4,7 +4,7 @@ import createHistory from "history/createBrowserHistory";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { i18nState } from "redux-i18n";
 import thunk from "redux-thunk";
-import users from "redux/modules/users";
+import user from "redux/modules/user";
 
 const env = process.env.NODE_ENV;
 
@@ -18,7 +18,7 @@ if (env === "development") {
 }
 
 const reducer = combineReducers({
-  users,
+  user,
   routing: routerReducer,
   i18nState
 });
@@ -32,8 +32,6 @@ if (env === "development") {
 } else {
   store = initialState => createStore(reducer, applyMiddleware(...middlewares));
 }
-
-
 
 export { history };
 
