@@ -1,14 +1,16 @@
 import React from "react";
 import Ionicon from "react-ionicons";
 import styles from "./styles.scss";
+import propTypes from "prop-types";
 
-export const LoginForm = props => (
+export const LoginForm = (props, context) => (
+    
     <div className={styles.formComponent}>
         <form className={styles.form}>
-            <input type="text" placeholder="Username" className={styles.textInput} />
+            <input type="text" placeholder={context.t("Username")} className={styles.textInput} />
             <input
                 type="password"
-                placeholder="Password"
+                placeholder={context.t("Password")}
                 className={styles.textInput}
             />
             <input type="submit" value="Log in" className={styles.button} />
@@ -22,7 +24,7 @@ export const LoginForm = props => (
     </div>
 );
 
-export const SignupForm = props => (
+export const SignupForm = (props, context) => (
     <div className={styles.formComponent}>
         <h3 className={styles.signupHeader}>Sign up to see photos and videos from your friends.</h3>
         <button className={styles.button}>
@@ -31,8 +33,8 @@ export const SignupForm = props => (
         </button>
         <span className={styles.divider}>or</span>
         <form className={styles.form}>
-            <input type="email" placeholder="Email" className={styles.textInput} />
-            <input type="text" placeholder="Full Name" className={styles.textInput} />
+            <input type="email" placeholder={context.t("Email")} className={styles.textInput} />
+            <input type="text" placeholder={context.t("Full name")} className={styles.textInput} />
             <input
                 type="username"
                 placeholder="Username"
@@ -50,3 +52,11 @@ export const SignupForm = props => (
         </p>
     </div>
 );
+
+LoginForm.contextType = {
+  t: propTypes.func.isRequired
+};
+
+SignupForm.contextType = {
+  t: propTypes.func.isRequired
+};
