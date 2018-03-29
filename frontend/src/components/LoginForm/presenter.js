@@ -5,18 +5,29 @@ import propTypes from "prop-types";
 
 const LoginForm = (props, context) => (
   <div className={formStyles.formComponent}>
-    <form className={formStyles.form}>
+    <form className={formStyles.form} onSubmit={props.handleSubmit}>
       <input
         type="text"
         placeholder={context.t("Username")}
         className={formStyles.textInput}
+        value={props.usernameValue}
+        onChange={props.handleInputChange}
+        name="username"
       />
       <input
         type="password"
         placeholder={context.t("Password")}
         className={formStyles.textInput}
+        value={props.passwordValue}
+        onChange={props.handleInputChange}
+        name="password"
       />
-      <input type="submit" value="Log in" className={formStyles.button} />
+      <input
+        type="submit"
+        value="Log in"
+        onClick={props.handleSubmit}
+        className={formStyles.button}
+      />
     </form>
     <span className={formStyles.divider}>or</span>
     <span className={formStyles.facebookLink}>
@@ -26,6 +37,13 @@ const LoginForm = (props, context) => (
     <span className={formStyles.forgotLink}>Forgot password?</span>
   </div>
 );
+
+LoginForm.prototype = {
+  username: propTypes.string.isRequired,
+  password: propTypes.string.isRequired,
+  handleInputChange: propTypes.func.isRequired,
+  handleSubmit: propTypes.func.isRequired
+};
 
 LoginForm.contextTypes = {
   t: propTypes.func.isRequired

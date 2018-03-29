@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import { Route, Switch } from "react-router-dom";
 import "./styles.scss";
 import Footer from "components/Footer";
@@ -11,9 +11,9 @@ const App = props => [
   <Footer key={3} />
 ];
 
-App.PropTypes = {
-    isLoggedIn: PropTypes.bool.isRequired
-}
+App.propTypes = {
+  isLoggedIn: propTypes.bool.isRequired
+};
 
 const PrivateRoutes = props => (
   <Switch>
