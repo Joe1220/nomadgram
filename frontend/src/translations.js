@@ -1,15 +1,25 @@
 export const translations = {
-    kr: {
-        "Log in": "로그인",
-        "About Us": "INSTAGRAM 정보",
-        "Support": "지원",
-        "Blog": "블로그",
-        "Press": "홍보 센터",
-        "API": "API",
-        "Jobs": "채용 정보",
-        "Privacy": "개인정보처리방침",
-        "Terms": "약관",
-        "Directory": "디렉터리",
-        "Language": "언어"
-    }
+  'kr': {
+    'Don\'t have an account?': '계정이 없으신가요?',
+    'Sign Up': '가입',
+    'Have an account?': '계정이 있으신가요?',
+    'Log in': '로그인',
+    'Get the app': '앱 가져오기',
+    'Username': '유저네임',
+    'Password': '비밀번호',
+    'Email': '이메일',
+    'Full name': '이름',
+    'About Us': 'INSTAGRAM 정보',
+    'Support': '지원',
+    'Blog': '블로그',
+    'Press': '홍보 센터',
+    'API': 'API',
+    'Jobs': '채용정보',
+    'Privacy': '개인정보처리방침',
+    'Terms': '약관',
+    'Directory': '디렉터리',
+    'Language': '언어',
+  },
+  'options': {
+  },
 }
