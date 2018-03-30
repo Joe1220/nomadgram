@@ -1,5 +1,6 @@
 import React from "react";
-import Ionicon from "react-ionicons";
+// import Ionicon from "react-ionicons";
+import FacebookLogin from "react-facebook-login";
 import formStyles from "shared/formStyles.scss";
 import propTypes from "prop-types";
 
@@ -8,10 +9,14 @@ const SignupForm = (props, context) => (
     <h3 className={formStyles.signupHeader}>
       Sign up to see photos and videos from your friends.
     </h3>
-    <button className={formStyles.button}>
-      <Ionicon icon="logo-facebook" fontSize="20px" color="white" /> Log in with
-      Facebook
-    </button>
+    <FacebookLogin
+      appId="155702698444190"
+      autoLoad={true}
+      fields="name,email,picture"
+      callback={props.handleFacebookLogin}
+      cssClass={formStyles.facebookLink}
+      icon="fa-facebook-official"
+    />
     <span className={formStyles.divider}>or</span>
     <form className={formStyles.form} onSubmit={props.handleSubmit}>
       <input
