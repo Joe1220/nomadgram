@@ -26,7 +26,10 @@ class Container extends Component {
     const { key } = event;
     if(key === "Enter") {
       event.preventDefault();
-      submitComment(comment)
+      submitComment(comment);
+      this.setState({
+        comment: ""
+      })
     }
   }
 };
