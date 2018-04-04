@@ -8,6 +8,22 @@ class Container extends Component {
   render() {
     return <UserList {...this.props} {...this.state} />;
   }
+  componentDidMount() {
+    const { userList } = this.props;
+    if (userList) {
+      this.setState({
+        loading: false
+      })
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    const { userList } = nextProps;
+    if(userList) {
+      this.setState({
+        loading: false
+      })
+    }
+  }
 }
 
 export default Container;
