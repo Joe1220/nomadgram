@@ -1,19 +1,28 @@
-.vertical {
+.container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px 16px;
   width: 100%;
   box-sizing: border-box;
   border-bottom: 1px solid $light-grey;
-  top: 0;
+  &:last-child {
+    border: 0;
+  }
   @include breakpoint("phone-tablet") {
     border-bottom: 0;
   }
   .column {
     display: flex;
     align-items: center;
-    .image {
+    .bigAvatar {
       width: 55px;
+      height: 55px;
+      border-radius: 50%;
+    }
+    .avatar {
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
     }
     .user {

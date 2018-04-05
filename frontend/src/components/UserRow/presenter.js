@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import styles from "./styles.scss";
 
 const UserRow = (props, context) => (
-  <div className={styles.vertical}>
+  <div className={styles.container}>
     <div className={styles.column}>
       <img
         src={props.user.profile_image || require("images/noPhoto.jpg")}
         alt={props.user.username}
-        className={styles.image}
+        className={props.big ? styles.bigAvatar : styles.avatar}
       />
       <div className={styles.user}>
         <span className={styles.username}>{props.user.username}</span>
