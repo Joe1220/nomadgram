@@ -34,7 +34,8 @@ UserRow.propTypes = {
     username: PropTypes.string.isRequired,
     name: PropTypes.string,
     following: PropTypes.bool.isRequired
-  }).isRequired
+  }).isRequired,
+  handleClick: PropTypes.func.isRequired
 };
 
 export default UserRow;
