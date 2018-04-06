@@ -9,19 +9,18 @@ class Container extends Component {
   static propTypes = {
     getExplore: PropTypes.func.isRequired,
     userList: PropTypes.array
-  }
+  };
   componentDidMount() {
     const { getExplore } = this.props;
     getExplore();
-    this.setState({ loading: false });
   }
-  componentWillReceiveProps = (nextProps) => {
-    if(nextProps.userList) {
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.userList) {
       this.setState({
         loading: false
-      })
+      });
     }
-  }
+  };
   render() {
     const { userList } = this.props;
     return <Explore {...this.state} userList={userList} />;

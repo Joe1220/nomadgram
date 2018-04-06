@@ -1,5 +1,5 @@
 import React from "react";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import Ionicon from "react-ionicons";
 import { Link } from "react-router-dom";
 import styles from "./styles.scss";
@@ -17,11 +17,15 @@ const Navigation = (props, context) => (
         </Link>
       </div>
       <div className={styles.column}>
-        <input
-          type="text"
-          placeholder={context.t("Search")}
-          className={styles.searchInput}
-        />
+        <form onSubmit={props.onSubmit}>
+          <input
+            type="text"
+            value={props.value}
+            onChange={props.onInputChange}
+            placeholder={context.t("Search")}
+            className={styles.searchInput}
+          />
+        </form>
       </div>
       <div className={styles.column}>
         <div className={styles.navIcon}>
@@ -42,8 +46,15 @@ const Navigation = (props, context) => (
   </div>
 );
 
+Navigation.propTypes = {
+  value: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  handleNotification: PropTypes.func.isRequired
+};
+
 Navigation.contextTypes = {
-  t: propTypes.func.isRequired
-}
+  t: PropTypes.func.isRequired
+};
 
 export default Navigation;
