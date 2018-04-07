@@ -8,6 +8,7 @@ const SET_USER_LIST = "SET_USER_LIST";
 const FOLLOW_USER = "FOLLOW_USER";
 const UNFOLLOW_USER = "UNFOLLOW_USER";
 const SET_IMAGE_LIST = "SET_IMAGE_LIST";
+const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
 
 // action creators
 
@@ -50,6 +51,13 @@ function setImageList(imageList) {
     type: SET_IMAGE_LIST,
     imageList
   };
+}
+
+function setNotifications(notifications) {
+  return {
+    type: SET_NOTIFICATIONS,
+    notifications
+  }
 }
 
 // API actions
@@ -246,6 +254,25 @@ function searchImages(token, searchTerm) {
     .then(json => json);
 }
 
+function getNotifications() {
+  return (dispatch, getState) => {
+    const { user: { token } } = getState();
+    fetch("/notifications/", {
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(logout());
+        }
+        return response.json();
+      })
+      .then(json => dispatch(setNotifications(json)));
+  };
+}
+
 // initial state
 
 const initialState = {
@@ -269,6 +296,8 @@ function reducer(state = initialState, action) {
       return applyUnfollowUser(state, action);
     case SET_IMAGE_LIST:
       return applySetImageList(state, action);
+    case SET_NOTIFICATIONS:
+      return applySetNotifications(state, action);
     default:
       return state;
   }
@@ -336,6 +365,14 @@ function applySetImageList(state, action) {
   };
 }
 
+function applySetNotifications(state, action) {
+  const { notifications } = action;
+  return {
+    ...state,
+    notifications
+  }
+}
+
 // exports
 
 const actionCreators = {
@@ -347,7 +384,8 @@ const actionCreators = {
   followUser,
   unfollowUser,
   getExplore,
-  searchByTerm
+  searchByTerm,
+  getNotifications
 };
 
 export { actionCreators };

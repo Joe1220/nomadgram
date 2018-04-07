@@ -9,7 +9,7 @@ class Notifications(APIView):
 
        user = request.user
 
-       Notifications = models.Notification.objects.filter(to=user)
+       Notifications = models.Notification.objects.filter(to=user)[:10]
 
        serializer = serializers.NotificationSerializer(Notifications, many=True)
 

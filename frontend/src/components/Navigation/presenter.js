@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Ionicon from "react-ionicons";
 import { Link } from "react-router-dom";
 import styles from "./styles.scss";
+import Notification from "components/Notification";
 
 const Navigation = (props, context) => (
   <div className={styles.navigation}>
@@ -33,8 +34,9 @@ const Navigation = (props, context) => (
             <Ionicon icon="ios-compass-outline" fontsize="20px" color="black" />
           </Link>
         </div>
-        <div className={styles.navIcon}>
+        <div className={styles.navIcon} onClick={props.handleNotification}>
           <Ionicon icon="ios-heart-outline" fontsize="20px" color="black" />
+          {props.seeingNotification && <Notification notifications={props.notifications}/>}
         </div>
         <div className={styles.navIcon}>
           <Link to="/profile">
@@ -48,9 +50,11 @@ const Navigation = (props, context) => (
 
 Navigation.propTypes = {
   value: PropTypes.string.isRequired,
+  seeingNotification: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  handleNotification: PropTypes.func.isRequired
+  handleNotification: PropTypes.func.isRequired,
+  notifications:  PropTypes.array
 };
 
 Navigation.contextTypes = {
