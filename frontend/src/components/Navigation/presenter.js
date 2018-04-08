@@ -39,8 +39,8 @@ const Navigation = (props, context) => (
           {props.seeingNotification && <Notification notifications={props.notifications}/>}
         </div>
         <div className={styles.navIcon}>
-          <Link to="/profile">
-            <Ionicon icon="ios-person-outline" fontsize="20px" color="black" />
+          <Link to={`/${props.username}`}>
+            <Ionicon icon="ios-person-outline" fontSize="32px" color="black" />
           </Link>
         </div>
       </div>

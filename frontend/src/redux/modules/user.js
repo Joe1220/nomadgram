@@ -9,13 +9,17 @@ const FOLLOW_USER = "FOLLOW_USER";
 const UNFOLLOW_USER = "UNFOLLOW_USER";
 const SET_IMAGE_LIST = "SET_IMAGE_LIST";
 const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
+const SET_PROFILE = "SET_PROFILE";
 
 // action creators
 
-function saveToken(token) {
+function saveToken(json) {
+  const { token } = json;
+  const { user: { username }} = json;
   return {
     type: SAVE_TOKEN,
-    token
+    token,
+    username
   };
 }
 
@@ -60,10 +64,17 @@ function setNotifications(notifications) {
   }
 }
 
+function setProfile(profile) {
+  return {
+    type: SET_PROFILE,
+    profile
+  }
+}
+
 // API actions
 
 function facebookLogin(access_token) {
-  return dispatch => {
+  return function(dispatch) {
     fetch("/users/login/facebook/", {
       method: "POST",
       headers: {
@@ -76,7 +87,7 @@ function facebookLogin(access_token) {
       .then(response => response.json())
       .then(json => {
         if (json.token) {
-          dispatch(saveToken(json.token));
+          dispatch(saveToken(json));
         }
       })
       .catch(err => console.log(err));
@@ -84,7 +95,7 @@ function facebookLogin(access_token) {
 }
 
 function usernameLogin(username, password) {
-  return dispatch => {
+  return function(dispatch) {
     fetch("/rest-auth/login/", {
       method: "POST",
       headers: {
@@ -98,13 +109,12 @@ function usernameLogin(username, password) {
       .then(response => response.json())
       .then(json => {
         if (json.token) {
-          dispatch(saveToken(json.token));
+          dispatch(saveToken(json));
         }
       })
       .catch(err => console.log(err));
   };
 }
-
 function createAccount(username, password, email, name) {
   return dispatch => {
     fetch("/rest-auth/registration/", {
@@ -273,6 +283,26 @@ function getNotifications() {
   };
 }
 
+function getProfile(username) {
+  return (dispatch, getState) => {
+    const { user: { token } } = getState();
+    fetch(`/users/${username}/`, {
+      method: "GET",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(logout());
+        }
+        return response.json();
+      })
+      .then(json => dispatch(setProfile(json)));
+  };
+}
+
 // initial state
 
 const initialState = {
@@ -298,6 +328,8 @@ function reducer(state = initialState, action) {
       return applySetImageList(state, action);
     case SET_NOTIFICATIONS:
       return applySetNotifications(state, action);
+    case SET_PROFILE:
+      return applySetProfile(state, action);
     default:
       return state;
   }
@@ -307,11 +339,13 @@ function reducer(state = initialState, action) {
 
 function applySetToken(state, action) {
   const { token } = action;
+  const { username } = action;
   localStorage.setItem("jwt", token);
   return {
     ...state,
     isLoggedIn: true,
-    token: token
+    token,
+    username
   };
 }
 
@@ -373,6 +407,14 @@ function applySetNotifications(state, action) {
   }
 }
 
+function applySetProfile(state, action) {
+  const { profile } = action;
+  return {
+    ...state,
+    profile
+  }
+}
+
 // exports
 
 const actionCreators = {
@@ -385,7 +427,8 @@ const actionCreators = {
   unfollowUser,
   getExplore,
   searchByTerm,
-  getNotifications
+  getNotifications,
+  getProfile
 };
 
 export { actionCreators };
