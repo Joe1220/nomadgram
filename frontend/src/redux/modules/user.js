@@ -303,11 +303,13 @@ function getProfile(username) {
   };
 }
 
+
 // initial state
 
 const initialState = {
   isLoggedIn: localStorage.getItem("jwt") ? true : false,
-  token: localStorage.getItem("jwt")
+  token: localStorage.getItem("jwt"),
+  username: localStorage.getItem("username")
 };
 
 // reducer
@@ -341,6 +343,7 @@ function applySetToken(state, action) {
   const { token } = action;
   const { username } = action;
   localStorage.setItem("jwt", token);
+  localStorage.setItem("username", username);
   return {
     ...state,
     isLoggedIn: true,

@@ -15,6 +15,7 @@ class Container extends Component {
     return (
       <Navigation
         {...this.state}
+        username={this.props.username}
         onInputChange={this._onInputChange}
         onSubmit={this._onSubmit}
         handleNotification={this._handleNotification}

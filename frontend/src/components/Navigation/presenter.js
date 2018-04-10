@@ -36,10 +36,12 @@ const Navigation = (props, context) => (
         </div>
         <div className={styles.navIcon} onClick={props.handleNotification}>
           <Ionicon icon="ios-heart-outline" fontsize="20px" color="black" />
-          {props.seeingNotification && <Notification notifications={props.notifications}/>}
+          {props.seeingNotification && (
+            <Notification notifications={props.notifications} />
+          )}
         </div>
         <div className={styles.navIcon}>
-          <Link to={`/${props.username}`}>
+          <Link to={`/${props.username}/`}>
             <Ionicon icon="ios-person-outline" fontSize="32px" color="black" />
           </Link>
         </div>
@@ -49,12 +51,13 @@ const Navigation = (props, context) => (
 );
 
 Navigation.propTypes = {
+  username: PropTypes.string,
   value: PropTypes.string.isRequired,
   seeingNotification: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   handleNotification: PropTypes.func.isRequired,
-  notifications:  PropTypes.array
+  notifications: PropTypes.array
 };
 
 Navigation.contextTypes = {

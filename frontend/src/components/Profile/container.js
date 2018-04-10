@@ -4,14 +4,23 @@ import Profile from "./presenter";
 
 class Container extends Component {
   state = {
-    loading: true
+    loading: true,
+    seeingConfig: false
   };
   static propTypes = {
-    getProfile: PropTypes.func.isRequired
+    username: PropTypes.string.isRequired,
+    getProfile: PropTypes.func.isRequired,
+    profile: PropTypes.object
   };
   componentDidMount() {
     const { getProfile, username } = this.props;
-    getProfile(username);
+    if (!this.props.profile) {
+      getProfile(username);
+    } else {
+      this.setState({
+        loading: false
+      });
+    }
   }
   componentWillReceiveProps = nextProps => {
     if (nextProps.profile) {
@@ -20,8 +29,19 @@ class Container extends Component {
       });
     }
   };
+  _openConfigBox = () => {
+    this.setState({
+      seeingConfig: !this.state.seeingConfig
+    })
+  }
   render() {
-    return <Profile {...this.props} {...this.state} />;
+    const { profile } = this.props;
+    return <Profile 
+      profile={profile}
+      openConfigBox={this._openConfigBox}
+      {...this.props} 
+      {...this.state} 
+    />;
   }
 }
 

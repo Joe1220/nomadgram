@@ -4,11 +4,11 @@ import { push } from "react-router-redux";
 import { actionCreators as userActions } from "redux/modules/user";
 
 const mapStateToProps = (state, ownProps) => {
-  const { user: { username }} = state;
-  return { 
-    username 
+  const { user: { username } } = state;
+  return {
+    username
   };
-}
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
