@@ -20,7 +20,7 @@ class CountImageSerializer(serializers.ModelSerializer):
             'id',
             'file',
             'like_count',
-            'Comment_count'
+            'comment_count'
         )
 
 class FeedUserSerializer(serializers.ModelSerializer):

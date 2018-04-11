@@ -5,6 +5,7 @@ import Loading from "components/Loading";
 import styles from "./styles.scss";
 import { Link } from "react-router-dom";
 import PhotoDisplay from "components/PhotoDisplay";
+import ConfigBox from "components/ConfigBox";
 
 const Profile = props => {
   if (props.loading) {
@@ -39,7 +40,7 @@ const RenderUserProfile = (props, context) => {
             </button>
             <span className={styles.icon} onClick={props.openConfigBox}>
               <Ionicon icon="ios-settings" fontSize="30px" color="black" />
-              {props.seeingConfig && <RenderConfigBox />}
+              {props.seeingConfig && <ConfigBox />}
             </span>
           </div>
           <div className={styles.follow}>
@@ -80,10 +81,6 @@ const RenderUserProfile = (props, context) => {
   )
 }
 
-const RenderConfigBox = props => (
-  <div>hello</div>
-)
-
 RenderUserProfile.contextTypes = {
   t: PropTypes.func.isRequired
 };
@@ -104,7 +101,7 @@ Profile.propTypes = {
         id: PropTypes.number.isRequired,
         file: PropTypes.string.isRequired,
         like_count: PropTypes.number,
-        Comment_count: PropTypes.number
+        comment_count: PropTypes.number
       })
     ).isRequired
   }),

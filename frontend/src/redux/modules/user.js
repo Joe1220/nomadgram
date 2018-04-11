@@ -354,9 +354,10 @@ function applySetToken(state, action) {
 
 function applyLogout(state, action) {
   localStorage.removeItem("jwt");
+  localStorage.removeItem("username");
   return {
-    isLoggedIn: false
-  };
+      isLoggedIn: false
+  }
 }
 
 function applySetUserList(state, action) {
