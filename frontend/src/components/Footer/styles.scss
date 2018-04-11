@@ -11,6 +11,7 @@
   flex-wrap: wrap;
   @include breakpoint("phone-tablet") {
     justify-content: center;
+    align-items: center;
     max-width: 350px;
     margin-bottom: 25px;
   }

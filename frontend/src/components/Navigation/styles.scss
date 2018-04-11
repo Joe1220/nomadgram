@@ -1,8 +1,10 @@
 .navigation {
   width: 100%;
+  min-width: 500px;
   @include boxBorder(no);
   display: flex;
   justify-content: center;
+  @include boxBorder(no);
   .inner {
     max-width: $max-page-width;
     display: flex;
@@ -16,14 +18,31 @@
       justify-content: center;
       align-items: center;
       width: 33%;
+      @include breakpoint("phone-tablet") {
+        width: 50%;
+      }
       &:first-child {
         justify-content: flex-start;
       }
+      &:nth-child(2n) {
+        @include breakpoint("phone-tablet") {
+          display: none;
+        }
+      }
       &:last-child {
         justify-content: flex-end;
+        @include breakpoint("phone-tablet") {
+          margin-left: 10px;
+          display: flex;
+          justify-content: space-around;
+        }
       }
       .logo {
-        max-width: 125px;
+        width: 200px;
+        min-width: 150px;
+        @include breakpoint("phone-tablet") {
+          margin-left: 30px;
+        }
       }
       .searchInput {
         width: 215px;

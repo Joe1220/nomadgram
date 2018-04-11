@@ -31,7 +31,7 @@ const RenderUserProfile = (props, context) => {
           className={styles.avatar}
         />
         <div className={styles.content}>
-          <div className={styles.profileName}>
+          <div className={styles.text}>
             <span className={styles.username}>
               {props.profile.username}
             </span>
