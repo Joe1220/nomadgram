@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Ionicon from "react-ionicons";
 import Loading from "components/Loading";
 import styles from "./styles.scss";
-import { Link } from "react-router-dom";
 import PhotoDisplay from "components/PhotoDisplay";
 import ConfigBox from "components/ConfigBox";
 

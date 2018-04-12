@@ -1,5 +1,5 @@
 .container {
-  // z-index: 1;
+  z-index: 1;
   position: fixed;
   top: 0;
   left: 0;
@@ -32,7 +32,22 @@
         &:first-child {
           border-bottom: 1px solid blue;
         }
+        &:focus, 
+        &:active {
+          outline: none;
+        }
+        &:active {
+          opacity: 0.8;
+        }
+        &:hover {
+          background-color: $light-grey;
+        }
       }
     }
   }
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }

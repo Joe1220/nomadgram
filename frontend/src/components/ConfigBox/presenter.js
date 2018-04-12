@@ -1,13 +1,15 @@
 import React from "react";
 import styles from "./styles.scss";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const ConfigBox = (props, context) => (
   <div className={styles.container}>
     <div className={styles.box}>
       <div className={styles.content}>
-        <span className={styles.item}>{context.t("change password")}</span>
-        <span className={styles.item}>{context.t("notification")}</span>
+        <Link to={`/${props.username}/profile`}>
+          <span className={styles.item}>{context.t("change profile")}</span>
+        </Link>
         <span className={styles.item} onClick={props.logout}>
           {context.t("logout")}
         </span>
@@ -18,6 +20,7 @@ const ConfigBox = (props, context) => (
 );
 
 ConfigBox.propTypes = {
+  username: PropTypes.string.isRequired,
   logout: PropTypes.func.isRequired
 }
 

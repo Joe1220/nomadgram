@@ -4,6 +4,7 @@ import ConfigBox from "./presenter";
 
 const Container = props => (
   <ConfigBox 
+    username={props.username}
     logout={props.logout}
     {...props} 
   />
