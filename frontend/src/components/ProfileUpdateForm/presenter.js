@@ -38,8 +38,7 @@ ProfileUpdateForm.propTypes = {
   editProfile: PropTypes.bool.isRequired,
   editPassword: PropTypes.bool.isRequired,
   editProfileFunc: PropTypes.func.isRequired,
-  editPasswordFunc: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  editPasswordFunc: PropTypes.func.isRequired
 };
 
 export default ProfileUpdateForm

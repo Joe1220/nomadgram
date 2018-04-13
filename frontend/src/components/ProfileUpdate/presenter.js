@@ -51,7 +51,7 @@ class ProfileUpdate extends Component {
               <Textarea
                 type="textarea"
                 className={styles.input}
-                value={this.props.bio}
+                value={this.props.bio ? this.props.bio : " "}
                 onChange={this.props.handleInputChange}
                 name="bio"
               />
@@ -70,10 +70,11 @@ class ProfileUpdate extends Component {
               <span className={styles.label}>{this.context.t("Gender")}</span>
               <select 
                 name="gender"
-                className={styles.input}>
-                <option value="male" selected={this.props.profile.gender === "male"}>{this.context.t("Male")}</option>
-                <option vale="female" selected={this.props.profile.gender === "female"}>{this.context.t("Female")}</option>
-                <option  value={null} selected={this.props.profile.gender === null}>{this.context.t("Null")}</option>
+                className={styles.input}
+                defaultValue={this.props.profile.gender}>
+                <option value="male">{this.context.t("Male")}</option>
+                <option vale="female">{this.context.t("Female")}</option>
+                <option  value={null}>{this.context.t("Null")}</option>
               </select>
             </div>
             <input 
@@ -94,9 +95,9 @@ class ProfileUpdate extends Component {
       name: PropTypes.string,
       bio: PropTypes.string,
       website: PropTypes.string,
-      gender: PropTypes.string,
-      handleInputChange: PropTypes.func.isRequired
-    })
+      gender: PropTypes.string
+    }),
+    handleInputChange: PropTypes.func.isRequired
   }
   static contextTypes = {
     t: PropTypes.func.isRequired

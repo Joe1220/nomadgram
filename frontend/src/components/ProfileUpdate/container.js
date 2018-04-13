@@ -13,12 +13,15 @@ class Container extends Component {
   };
 
   _handleInputChange = event => {
-    console.log(event.target)
     const { target: { value, name } } = event;
     this.setState({
       [name]: value
     });
   };
+
+  _submitUpdateProfile = event => {
+    event.preventDefault();
+  }
 
   componentDidMount() {
     const { getProfile, username } = this.props;
