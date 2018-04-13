@@ -2,9 +2,10 @@ import { connect } from "react-redux";
 import Container from "./container";
 
 const mapStateToProps = (state, ownProps) => {
+  const { user: { username } } = state;
   return {
-    username: state.user.username
-  }
-}
+    username
+  };
+};
 
 export default connect(mapStateToProps)(Container);

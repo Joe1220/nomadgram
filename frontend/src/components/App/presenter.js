@@ -9,7 +9,7 @@ import Feed from "components/Feed";
 import Explore from "components/Explore";
 import Search from "components/Search"
 import Profile from "components/Profile";
-import ProfileChange from "components/ProfileChange";
+import ProfileUpdateForm from "components/ProfileUpdateForm";
 
 const App = props => [
   props.isLoggedIn ? <Navigation key={11} /> : null,
@@ -27,8 +27,8 @@ const PrivateRoutes = props => (
     <Route exact path="/explore" component={Explore} />
     <Route exact path="/search/:searchTerm" component={Search} />
     <Route exact path="/:username" component={Profile} />,
-    <Route exact path="/:username/profile" component={ProfileChange} />
-    <Route exact path="/:username/password" component={ProfileChange} />
+    <Route exact path="/:username/profile" component={ProfileUpdateForm} />
+    <Route exact path="/:username/password" component={ProfileUpdateForm} />
   </Switch>
 );
 

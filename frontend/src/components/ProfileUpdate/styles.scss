@@ -1,0 +1,55 @@
+.formComponent {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 100%;
+  margin-left: 90px;
+  margin-top: 30px;
+  box-sizing: content-box;
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .field {
+      width: 100%;
+      display: flex;
+      margin-bottom: 10px;
+      // @include breakpoint("phone-tablet") {
+      //   display: flex;
+      //   flex-direction: column;
+      // }
+      .label {
+        width: 30%;
+        float: left;
+        font-size: 18px;
+        font-weight: 500;
+      }
+      .input {
+        width: 70%;
+        border: 1px solid #efefef;
+        border-radius: 3px;
+        background-color: $bg-color;
+        margin-bottom: 5px;
+        font-size: $normal-font-size;
+        padding: 9px 0 7px 8px;
+        font-weight: 400;
+        resize: vertical; /* 상하만 가능 */
+        &:focus {
+          outline: none;
+        }
+        &::placeholder {
+          color: $dark-grey;
+          font-size: $normal-font-size;
+        }
+      }
+      .select {
+
+      }
+    }
+    .button {
+      @include blueButton();
+      width: 30%;
+      margin-top: 10px;
+    }
+  } 
+}

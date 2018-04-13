@@ -1,7 +1,11 @@
 import React, { Component } from "react";
-import ProfileChange from "./presenter";
+import ProfileUpdateForm from "./presenter";
+import PropTypes from "prop-types";
 
 class Container extends Component {
+  static propTypes = {
+    username: PropTypes.string
+  };
   state = {
     editProfile: true,
     editPassword: false
@@ -16,7 +20,7 @@ class Container extends Component {
   };
   render() {
     return (
-      <ProfileChange
+      <ProfileUpdateForm
         {...this.props}
         {...this.state}
         editProfileFunc={this._editProfileFunc}
@@ -32,7 +36,7 @@ class Container extends Component {
     } else if ("/:username/password") {
       this._editPasswordFunc();
     }
-  }
+  };
   _editProfileFunc = () => {
     this.setState({
       editProfile: true,
