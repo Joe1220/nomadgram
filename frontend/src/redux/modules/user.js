@@ -331,6 +331,28 @@ function putUpdateProfile(userName, name, website, bio, email, gender) {
   };
 }
 
+function changeAvatar(profile_image) {
+  return (dispatch, getState) => {
+    const { user: { token, username } } = getState();
+    fetch(`/users/${username}/`, {
+      method: "PUT",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        profile_image
+      })
+    })
+    .then(response => {
+      if (response.status === 401) {
+        dispatch(logout());
+      }
+      return response.json();
+    })
+    .then(json => dispatch(setProfile(json)));
+  };
+}
 
 // initial state
 
@@ -461,7 +483,8 @@ const actionCreators = {
   searchByTerm,
   getNotifications,
   getProfile,
-  putUpdateProfile
+  putUpdateProfile,
+  changeAvatar
 };
 
 export { actionCreators };

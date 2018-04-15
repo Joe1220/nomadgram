@@ -13,81 +13,72 @@ class ProfileUpdate extends Component {
         </div>
       )
     } else {
-      return (
-        <div className={styles.formComponent}>
+      return <div className={styles.formComponent}>
+          <div className={styles.imageField}>
+            <div className={styles.image}>
+              <img 
+                src={this.props.profile_image || require("images/noPhoto.jpg")} 
+                alt={this.props.userName} 
+                className={styles.avatar} 
+              />
+            </div>
+            <div className={styles.updateImage}>
+              <span className={styles.username}>
+                {this.props.userName}
+              </span>
+              <span className={styles.text}>
+                {this.context.t("Profile Image Update")}
+                <input 
+                  type="file" 
+                  name="image" 
+                  onChange={this.props.handleImageChange} />
+              </span>
+            </div>
+          </div>
           <form className={styles.form} onSubmit={this.props.submitUpdateProfile}>
             <div className={styles.field}>
-              <span className={styles.label}>{this.context.t("Name")}</span>
-                <input
-                  type="text"
-                  className={styles.input}
-                  value={this.props.name}
-                  onChange={this.props.handleInputChange}
-                  name="name"
-                />
+              <span className={styles.label}>
+                {this.context.t("Name")}
+              </span>
+              <input type="text" className={styles.input} value={this.props.name} onChange={this.props.handleInputChange} name="name" />
             </div>
             <div className={styles.field}>
-              <span className={styles.label}>{this.context.t("Username")}</span>
-              <input
-                type="text"
-                className={styles.input}
-                value={this.props.userName}
-                onChange={this.props.handleInputChange}
-                name="userName"
-              />
+              <span className={styles.label}>
+                {this.context.t("Username")}
+              </span>
+              <input type="text" className={styles.input} value={this.props.userName} onChange={this.props.handleInputChange} name="userName" />
             </div>
             <div className={styles.field}>
-              <span className={styles.label}>{this.context.t("Website")}</span>
-              <input
-                type="url"
-                className={styles.input}
-                value={this.props.website}
-                onChange={this.props.handleInputChange}
-                name="website"
-              />
+              <span className={styles.label}>
+                {this.context.t("Website")}
+              </span>
+              <input type="url" className={styles.input} value={this.props.website} onChange={this.props.handleInputChange} name="website" />
             </div>
             <div className={styles.field}>
-              <span className={styles.label}>{this.context.t("Bio")}</span>
-              <Textarea
-                type="textarea"
-                className={styles.input}
-                value={this.props.bio ? this.props.bio : " "}
-                onChange={this.props.handleInputChange}
-                minRows={2}
-                maxRows={5}
-                name="bio"
-              />
+              <span className={styles.label}>
+                {this.context.t("Bio")}
+              </span>
+              <Textarea type="textarea" className={styles.input} value={this.props.bio ? this.props.bio : " "} onChange={this.props.handleInputChange} minRows={2} maxRows={5} name="bio" />
             </div>
             <div className={styles.field}>
-              <span className={styles.label}>{this.context.t("Email")}</span>
-              <input
-                type="email"
-                className={styles.input}
-                value={this.props.email}
-                onChange={this.props.handleInputChange}
-                name="email"
-              />
+              <span className={styles.label}>
+                {this.context.t("Email")}
+              </span>
+              <input type="email" className={styles.input} value={this.props.email} onChange={this.props.handleInputChange} name="email" />
             </div>
             <div className={styles.field}>
-              <span className={styles.label}>{this.context.t("Gender")}</span>
-              <select 
-                name="gender"
-                className={styles.input}
-                onChange={this.props.handleInputChange}
-                value={this.props.gender || ""}>
+              <span className={styles.label}>
+                {this.context.t("Gender")}
+              </span>
+              <select name="gender" className={styles.input} onChange={this.props.handleInputChange} value={this.props.gender || ""}>
                 <option value="male">{this.context.t("Male")}</option>
                 <option value="female">{this.context.t("Female")}</option>
                 <option value="">{this.context.t("Null")}</option>
               </select>
             </div>
-            <input 
-              type="submit"
-              className={styles.button}
-              value={this.context.t("Submit")}
-            />
+            <input type="submit" className={styles.button} value={this.context.t("Submit")} />
           </form>
-        </div>
-      )
+        </div>;
     }
   }
 
@@ -101,7 +92,8 @@ class ProfileUpdate extends Component {
       gender: PropTypes.string
     }),
     handleInputChange: PropTypes.func.isRequired,
-    submitUpdateProfile: PropTypes.func.isRequired
+    submitUpdateProfile: PropTypes.func.isRequired,
+    handleImageChange: PropTypes.func.isRequired
   }
   static contextTypes = {
     t: PropTypes.func.isRequired

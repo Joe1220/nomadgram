@@ -9,7 +9,8 @@ class Container extends Component {
     website: "",
     bio: "",
     email: "",
-    gender: null
+    gender: null,
+    profile_image: ""
   };
 
   _handleInputChange = event => {
@@ -18,6 +19,16 @@ class Container extends Component {
       [name]: value || null
     });
   };
+
+  _handleImageChange = event => {
+    event.preventDefault();
+    const { value } = event.currentTarget;
+    const { profile_image } = this.state;
+    this.setState({
+      profile_image: value
+    })
+    this.props.changeAvatar(profile_image);
+  }
 
   _submitUpdateProfile = event => {
     const { putUpdateProfile } = this.props;
@@ -39,7 +50,8 @@ class Container extends Component {
         website: nextProps.profile.website,
         bio: nextProps.profile.bio,
         email: nextProps.profile.email,
-        gender: nextProps.profile.gender
+        gender: nextProps.profile.gender,
+        profile_image: nextProps.profile.profile_image
       });
     }
   };
@@ -51,6 +63,7 @@ class Container extends Component {
         {...this.props}
         submitUpdateProfile={this._submitUpdateProfile}
         handleInputChange={this._handleInputChange}
+        handleImageChange={this._handleImageChange}
         profile={this.props.profile}
       />
     );
@@ -66,7 +79,8 @@ class Container extends Component {
       email: PropTypes.string.isRequired
     }),
     putUpdateProfile: PropTypes.func.isRequired,
-    getProfile: PropTypes.func.isRequired
+    getProfile: PropTypes.func.isRequired,
+    changeAvatar: PropTypes.func.isRequired
   };
 }
 

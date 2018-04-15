@@ -16,6 +16,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     putUpdateProfile: (userName, name, website, bio, email, gender) => {
       dispatch(userActions.putUpdateProfile(userName, name, website, bio, email, gender));
+    },
+    changeAvatar: (image) => {
+      dispatch(userActions.changeAvatar(image));
     }
   };
 };
