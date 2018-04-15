@@ -53,6 +53,8 @@ class ProfileUpdate extends Component {
                 className={styles.input}
                 value={this.props.bio ? this.props.bio : " "}
                 onChange={this.props.handleInputChange}
+                minRows={2}
+                maxRows={5}
                 name="bio"
               />
             </div>

@@ -14,10 +14,10 @@
       width: 100%;
       display: flex;
       margin-bottom: 10px;
-      // @include breakpoint("phone-tablet") {
-      //   display: flex;
-      //   flex-direction: column;
-      // }
+      @include breakpoint("phone-tablet") {
+        display: flex;
+        flex-direction: column;
+      }
       .label {
         width: 30%;
         float: left;
@@ -34,6 +34,7 @@
         padding: 9px 0 7px 8px;
         font-weight: 400;
         resize: vertical; /* 상하만 가능 */
+        
         &:focus {
           outline: none;
         }
@@ -42,8 +43,8 @@
           font-size: $normal-font-size;
         }
       }
-      .select {
-
+      select[name="gender"] {
+        width: 40%;
       }
     }
     .button {
