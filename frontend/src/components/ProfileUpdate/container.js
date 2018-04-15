@@ -15,17 +15,20 @@ class Container extends Component {
   _handleInputChange = event => {
     const { target: { value, name } } = event;
     this.setState({
-      [name]: value
+      [name]: value || null
     });
   };
 
   _submitUpdateProfile = event => {
+    const { putUpdateProfile } = this.props;
+    const { userName, name, website, bio, email, gender } = this.state;
     event.preventDefault();
-  }
+    putUpdateProfile(userName, name, website, bio, email, gender);
+  };
 
   componentDidMount() {
-    const { getProfile, username } = this.props;
-    getProfile(username);
+    const { getProfile } = this.props;
+    getProfile();
   }
 
   componentWillReceiveProps = nextProps => {
@@ -35,7 +38,8 @@ class Container extends Component {
         name: nextProps.profile.name,
         website: nextProps.profile.website,
         bio: nextProps.profile.bio,
-        email: nextProps.profile.email
+        email: nextProps.profile.email,
+        gender: nextProps.profile.gender
       });
     }
   };
@@ -45,6 +49,7 @@ class Container extends Component {
       <ProfileUpdate
         {...this.state}
         {...this.props}
+        submitUpdateProfile={this._submitUpdateProfile}
         handleInputChange={this._handleInputChange}
         profile={this.props.profile}
       />
@@ -59,7 +64,9 @@ class Container extends Component {
       website: PropTypes.string,
       gender: PropTypes.string,
       email: PropTypes.string.isRequired
-    })
+    }),
+    putUpdateProfile: PropTypes.func.isRequired,
+    getProfile: PropTypes.func.isRequired
   };
 }
 

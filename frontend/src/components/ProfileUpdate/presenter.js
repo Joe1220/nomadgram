@@ -15,7 +15,7 @@ class ProfileUpdate extends Component {
     } else {
       return (
         <div className={styles.formComponent}>
-          <form className={styles.form}>
+          <form className={styles.form} onSubmit={this.props.submitUpdateProfile}>
             <div className={styles.field}>
               <span className={styles.label}>{this.context.t("Name")}</span>
                 <input
@@ -59,7 +59,7 @@ class ProfileUpdate extends Component {
             <div className={styles.field}>
               <span className={styles.label}>{this.context.t("Email")}</span>
               <input
-                type="text"
+                type="email"
                 className={styles.input}
                 value={this.props.email}
                 onChange={this.props.handleInputChange}
@@ -71,10 +71,11 @@ class ProfileUpdate extends Component {
               <select 
                 name="gender"
                 className={styles.input}
-                defaultValue={this.props.profile.gender}>
+                onChange={this.props.handleInputChange}
+                value={this.props.gender || ""}>
                 <option value="male">{this.context.t("Male")}</option>
-                <option vale="female">{this.context.t("Female")}</option>
-                <option  value={null}>{this.context.t("Null")}</option>
+                <option value="female">{this.context.t("Female")}</option>
+                <option value="">{this.context.t("Null")}</option>
               </select>
             </div>
             <input 
@@ -97,7 +98,8 @@ class ProfileUpdate extends Component {
       website: PropTypes.string,
       gender: PropTypes.string
     }),
-    handleInputChange: PropTypes.func.isRequired
+    handleInputChange: PropTypes.func.isRequired,
+    submitUpdateProfile: PropTypes.func.isRequired
   }
   static contextTypes = {
     t: PropTypes.func.isRequired

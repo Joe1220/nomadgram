@@ -9,7 +9,7 @@ const FOLLOW_USER = "FOLLOW_USER";
 const UNFOLLOW_USER = "UNFOLLOW_USER";
 const SET_IMAGE_LIST = "SET_IMAGE_LIST";
 const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
-const SET_PROFILE = "SET_PROFILE";
+const SET_PROFILE = "SET_PROFILE"
 
 // action creators
 
@@ -189,7 +189,7 @@ function unfollowUser(userId) {
       headers: {
         Authorization: `JWT ${token}`,
         "Content-Type": "application/json"
-      }
+      },
     }).then(response => {
       if (response.status === 401) {
         dispatch(logout());
@@ -255,13 +255,13 @@ function searchImages(token, searchTerm) {
       "Content-Type": "application/json"
     }
   })
-    .then(response => {
-      if (response.status === 401) {
-        return 401;
-      }
-      return response.json();
-    })
-    .then(json => json);
+  .then(response => {
+    if (response.status === 401) {
+      return 401;
+    }
+    return response.json();
+  })
+  .then(json => json);
 }
 
 function getNotifications() {
@@ -273,19 +273,19 @@ function getNotifications() {
         "Content-Type": "application/json"
       }
     })
-      .then(response => {
-        if (response.status === 401) {
-          dispatch(logout());
-        }
-        return response.json();
-      })
-      .then(json => dispatch(setNotifications(json)));
+    .then(response => {
+      if (response.status === 401) {
+        dispatch(logout());
+      }
+      return response.json();
+    })
+    .then(json => dispatch(setNotifications(json)));
   };
 }
 
-function getProfile(username) {
+function getProfile() {
   return (dispatch, getState) => {
-    const { user: { token } } = getState();
+    const { user: { token, username } } = getState();
     fetch(`/users/${username}/`, {
       method: "GET",
       headers: {
@@ -293,13 +293,41 @@ function getProfile(username) {
         "Content-Type": "application/json"
       }
     })
-      .then(response => {
-        if (response.status === 401) {
-          dispatch(logout());
-        }
-        return response.json();
+    .then(response => {
+      if (response.status === 401) {
+        dispatch(logout());
+      }
+      return response.json();
+    })
+    .then(json => dispatch(setProfile(json)));
+  };
+}
+
+function putUpdateProfile(userName, name, website, bio, email, gender) {
+  return (dispatch, getState) => {
+    const { user: { token, username } } = getState();
+    fetch(`/users/${username}/`, {
+      method: "PUT",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        userName, 
+        name, 
+        website, 
+        bio, 
+        email, 
+        gender
       })
-      .then(json => dispatch(setProfile(json)));
+    })
+    .then(response => {
+      if (response.status === 401) {
+        dispatch(logout());
+      }
+      return response.json();
+    })
+    .then(json => dispatch(setProfile(json)));
   };
 }
 
@@ -432,7 +460,8 @@ const actionCreators = {
   getExplore,
   searchByTerm,
   getNotifications,
-  getProfile
+  getProfile,
+  putUpdateProfile
 };
 
 export { actionCreators };

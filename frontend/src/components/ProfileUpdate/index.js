@@ -3,17 +3,19 @@ import Container from "./container";
 import { actionCreators as userActions } from "redux/modules/user";
 
 const mapStateToProps = (state, ownProps) => {
-  const { user: { username, profile } } = state;
+  const { user: { profile } } = state;
   return {
-    username,
     profile
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getProfile: (username) => {
-      dispatch(userActions.getProfile(username));
+    getProfile: () => {
+      dispatch(userActions.getProfile());
+    },
+    putUpdateProfile: (userName, name, website, bio, email, gender) => {
+      dispatch(userActions.putUpdateProfile(userName, name, website, bio, email, gender));
     }
   };
 };
