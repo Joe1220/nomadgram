@@ -30,12 +30,11 @@ class Container extends Component {
       this.setState({
         profile_image: reader.result
       });
-      // this.props.changeAvatar(file);
+      this.props.changeAvatar(reader.result);
     }
     reader.readAsDataURL(file);
     console.log('reader: ', reader.result)
     console.log("state: ", this.state.profile_image);
-    this.props.changeAvatar(this.state.profile_image);
   }
 
   _submitUpdateProfile = event => {

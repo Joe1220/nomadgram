@@ -337,20 +337,19 @@ function changeAvatar(profile_image) {
     fetch(`/users/${username}/`, {
       method: "PUT",
       headers: {
-        Authorization: `JWT ${token}`,
-        "Content-Type": "application/json"
+        Authorization: `JWT ${token}`
       },
       body: JSON.stringify({
         profile_image
       })
     })
-    .then(response => {
-      if (response.status === 401) {
-        dispatch(logout());
-      }
-      return response.json();
-    })
-    .then(json => dispatch(setProfile(json)));
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(logout());
+        }
+        return response.json();
+      })
+      .then(json => dispatch(setProfile(json)));
   };
 }
 
