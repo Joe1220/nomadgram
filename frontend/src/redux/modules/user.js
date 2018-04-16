@@ -344,14 +344,37 @@ function changeAvatar(profile_image) {
       },
       body: formData
     })
-      .then(response => {
-        if (response.status === 401) {
-          dispatch(logout());
-        }
-        return response.json();
-      })
-      .then(json => dispatch(setProfile(json)));
+    .then(response => {
+      if (response.status === 401) {
+        dispatch(logout());
+      }
+      return response.json();
+    })
+    .then(json => dispatch(setProfile(json)));
   };
+}
+
+function changePassword(current_password, new_password) {
+  return (dispatch, getState) => {
+        const { user: { token, username } } = getState();
+        fetch(`/users/${username}/password/`, {
+          method: "PUT",
+          headers: {
+            Authorization: `JWT ${token}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+              username,
+              current_password,
+              new_password
+          })
+        })
+        .then(response => response.json())
+        .then(json => {
+            console.log(json);
+        })
+        .catch(err => console.log(err));
+    }
 }
 
 // initial state
@@ -484,7 +507,8 @@ const actionCreators = {
   getNotifications,
   getProfile,
   putUpdateProfile,
-  changeAvatar
+  changeAvatar,
+  changePassword
 };
 
 export { actionCreators };

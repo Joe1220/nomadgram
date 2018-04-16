@@ -5,6 +5,7 @@ import Loading from "components/Loading";
 import styles from "./styles.scss";
 import PhotoDisplay from "components/PhotoDisplay";
 import ConfigBox from "components/ConfigBox";
+import { Link } from "react-router-dom";
 
 const Profile = props => {
   if (props.loading) {
@@ -34,9 +35,11 @@ const RenderUserProfile = (props, context) => {
             <span className={styles.username}>
               {props.profile.username}
             </span>
-            <button className={styles.button}>
-              {context.t("Edit Profile")}
-            </button>
+            <Link to={`/${props.username}/profile`}>
+              <button className={styles.button}>
+                {context.t("Edit Profile")}
+              </button>
+            </Link>
             <span className={styles.icon} onClick={props.openConfigBox}>
               <Ionicon icon="ios-settings" fontSize="30px" color="black" />
               {props.seeingConfig && <ConfigBox />}
