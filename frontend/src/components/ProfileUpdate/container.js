@@ -10,7 +10,7 @@ class Container extends Component {
     bio: "",
     email: "",
     gender: null,
-    profile_image: ""
+    profile_image: null
   };
 
   _handleInputChange = event => {
@@ -22,12 +22,20 @@ class Container extends Component {
 
   _handleImageChange = event => {
     event.preventDefault();
-    const { value } = event.currentTarget;
-    const { profile_image } = this.state;
-    this.setState({
-      profile_image: value
-    })
-    this.props.changeAvatar(profile_image);
+
+    let reader = new FileReader();
+    let file = event.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        profile_image: reader.result
+      });
+      // this.props.changeAvatar(file);
+    }
+    reader.readAsDataURL(file);
+    console.log('reader: ', reader.result)
+    console.log("state: ", this.state.profile_image);
+    this.props.changeAvatar(this.state.profile_image);
   }
 
   _submitUpdateProfile = event => {

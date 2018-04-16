@@ -27,11 +27,13 @@ class ProfileUpdate extends Component {
                 {this.props.userName}
               </span>
               <span className={styles.text}>
-                {this.context.t("Profile Image Update")}
+                <label htmlFor="imageUpload">{this.context.t("Profile Image Update")}</label>
                 <input 
                   type="file" 
                   name="image" 
-                  onChange={this.props.handleImageChange} />
+                  id="imageUpload"
+                  onChange={this.props.handleImageChange} 
+                  accept="image/*"/>
               </span>
             </div>
           </div>
