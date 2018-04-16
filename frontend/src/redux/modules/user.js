@@ -334,14 +334,15 @@ function putUpdateProfile(userName, name, website, bio, email, gender) {
 function changeAvatar(profile_image) {
   return (dispatch, getState) => {
     const { user: { token, username } } = getState();
+    var formData = new FormData();
+    formData.append("profile_image", profile_image);
+
     fetch(`/users/${username}/`, {
       method: "PUT",
       headers: {
         Authorization: `JWT ${token}`
       },
-      body: JSON.stringify({
-        profile_image
-      })
+      body: formData
     })
       .then(response => {
         if (response.status === 401) {

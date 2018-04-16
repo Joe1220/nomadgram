@@ -22,19 +22,7 @@ class Container extends Component {
 
   _handleImageChange = event => {
     event.preventDefault();
-
-    let reader = new FileReader();
-    let file = event.target.files[0];
-
-    reader.onloadend = () => {
-      this.setState({
-        profile_image: reader.result
-      });
-      this.props.changeAvatar(reader.result);
-    }
-    reader.readAsDataURL(file);
-    console.log('reader: ', reader.result)
-    console.log("state: ", this.state.profile_image);
+    this.props.changeAvatar(event.target.files ? event.target.files[0] : "");
   }
 
   _submitUpdateProfile = event => {
