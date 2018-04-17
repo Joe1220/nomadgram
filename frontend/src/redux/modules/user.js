@@ -370,7 +370,6 @@ function changePassword(current_password, new_password) {
       })
     })
     .then(response => {
-      console.log('response: ', response)
       if (response.status === 401) {
         dispatch(logout());
       }
