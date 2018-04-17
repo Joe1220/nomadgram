@@ -9,7 +9,7 @@ const FOLLOW_USER = "FOLLOW_USER";
 const UNFOLLOW_USER = "UNFOLLOW_USER";
 const SET_IMAGE_LIST = "SET_IMAGE_LIST";
 const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
-const SET_PROFILE = "SET_PROFILE"
+const SET_PROFILE = "SET_PROFILE";
 
 // action creators
 
@@ -356,25 +356,28 @@ function changeAvatar(profile_image) {
 
 function changePassword(current_password, new_password) {
   return (dispatch, getState) => {
-        const { user: { token, username } } = getState();
-        fetch(`/users/${username}/password/`, {
-          method: "PUT",
-          headers: {
-            Authorization: `JWT ${token}`,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-              username,
-              current_password,
-              new_password
-          })
-        })
-        .then(response => response.json())
-        .then(json => {
-            console.log(json);
-        })
-        .catch(err => console.log(err));
-    }
+    const { user: { token, username } } = getState();
+    fetch(`/users/${username}/password/`, {
+      method: "PUT",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username,
+        current_password,
+        new_password
+      })
+    })
+    .then(response => {
+      console.log('response: ', response)
+      if (response.status === 401) {
+        dispatch(logout());
+      }
+      return response.json();
+    })
+    .catch(err => console.log(err));
+  }
 }
 
 // initial state

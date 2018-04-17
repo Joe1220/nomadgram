@@ -4,9 +4,7 @@ import { actionCreators as userActions } from "redux/modules/user";
 
 const mapStateToProps = (state, ownProps) => {
   const { user: { profile } } = state;
-  return {
-    profile
-  };
+  return { profile };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -14,10 +12,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     getProfile: () => {
       dispatch(userActions.getProfile());
     },
-    changePassword: (current_password, new_password, confirm_password) => {
-      if(new_password === confirm_password) {
-        dispatch(userActions.changePassword(current_password, new_password));
-      }
+    changePassword: (current_password, new_password) => {
+      dispatch(userActions.changePassword(
+        current_password, 
+        new_password));
     }
   };
 };

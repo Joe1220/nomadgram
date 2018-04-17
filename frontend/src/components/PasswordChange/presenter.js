@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Textarea from "react-textarea-autosize";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
 import Loading from "components/Loading";
@@ -20,7 +19,7 @@ class PasswordChange extends Component {
             </div>
             <span className={styles.username}>{this.props.username}</span>
           </div>
-          <form className={styles.form} onSubmit={this.props.changePassword}>
+          <form className={styles.form} onSubmit={this.props.handleSubmit}>
             <div className={styles.field}>
               <span className={styles.label}>
                 {this.context.t("current password")}
@@ -51,12 +50,16 @@ class PasswordChange extends Component {
               <input 
                 type="password" 
                 className={styles.input} 
-                value={this.props.confirm_password} 
+                value={this.props.check_password} 
                 onChange={this.props.handleInputChange} 
-                name="confirm_password" 
+                name="check_password" 
               />
             </div>
-            <input type="submit" className={styles.button} value={this.context.t("Submit")} />
+            <input 
+              type="submit" 
+              className={styles.button} 
+              value={this.context.t("Submit")} 
+            />
           </form>
         </div>;
     }
@@ -68,9 +71,10 @@ class PasswordChange extends Component {
       username: PropTypes.string.isRequired
     }),
     current_password: PropTypes.string.isRequired,
-    confirm_password: PropTypes.string.isRequired,
+    check_password: PropTypes.string.isRequired,
     new_password: PropTypes.string.isRequired,
-    handleInputChange: PropTypes.func.isRequired
+    handleInputChange: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired
   }
   static contextTypes = {
     t: PropTypes.func.isRequired
