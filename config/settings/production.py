@@ -18,12 +18,12 @@ DATABASES['default']['CONN_MAX_AGE'] = env.int('CONN_MAX_AGE', default=60)  # no
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql-psycopg2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': env('RDS_DB_NAME'),
         'USER': env('RDS_DB_USERNAME'),
         'PASSWORD': env('RDS_DB_PASSWORD'),
         'HOST': env('RDS_DB_HOSTNAME'),
-        'PORT': env('RDS_DB_PORT')
+        'PORT': env('RDS_DB_PORT'),
     }
 }
 # CACHES
