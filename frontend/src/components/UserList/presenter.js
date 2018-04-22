@@ -23,16 +23,12 @@ const UserList = props => (
 
 const RenderUsers = props =>
   props.list.map(user => (
-    <UserDisplay 
-      horizontal={true}
-      user={user} 
-      key={user.id} />
-));
+    <UserDisplay horizontal={true} user={user} key={user.id} />
+  ));
 
 RenderUsers.propTypes = {
   list: PropTypes.array
 };
-
 
 UserList.propTypes = {
   title: PropTypes.string.isRequired,
