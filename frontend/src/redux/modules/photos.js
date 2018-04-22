@@ -44,7 +44,9 @@ function addComment(photoId, comment) {
 
 function getFeed() {
   return (dispatch, getState) => {
-    const { user: { token } } = getState();
+    const {
+      user: { token }
+    } = getState();
     fetch("/images/", {
       headers: {
         Authorization: `JWT ${token}`
@@ -65,7 +67,9 @@ function getFeed() {
 function likePhoto(photoId) {
   return (dispatch, getState) => {
     dispatch(doLikePhoto(photoId));
-    const { user: { token } } = getState();
+    const {
+      user: { token }
+    } = getState();
     fetch(`/images/${photoId}/likes/`, {
       method: "POST",
       headers: {
@@ -84,7 +88,9 @@ function likePhoto(photoId) {
 function unlikePhoto(photoId) {
   return (dispatch, getState) => {
     dispatch(doUnlikePhoto(photoId));
-    const { user: { token } } = getState();
+    const {
+      user: { token }
+    } = getState();
     fetch(`/images/${photoId}/unlikes/`, {
       method: "DELETE",
       headers: {
@@ -102,7 +108,9 @@ function unlikePhoto(photoId) {
 
 function commentPhoto(photoId, message) {
   return (dispatch, getState) => {
-    const { user: { token } } = getState();
+    const {
+      user: { token }
+    } = getState();
     fetch(`/images/${photoId}/comments/`, {
       method: "POST",
       headers: {
