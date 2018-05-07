@@ -379,6 +379,23 @@ function changePassword(current_password, new_password) {
   }
 }
 
+function resetPassword(email) {
+  return function(dispatch) {
+    fetch("/rest-auth/password/reset/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email
+      })
+    })
+      .then(response => response.json())
+      .then(json => console.log(json))
+      .catch(err => console.log(err));
+  };
+}
+
 // initial state
 
 const initialState = {
@@ -510,7 +527,8 @@ const actionCreators = {
   getProfile,
   putUpdateProfile,
   changeAvatar,
-  changePassword
+  changePassword,
+  resetPassword
 };
 
 export { actionCreators };
