@@ -10,6 +10,7 @@ import Explore from "components/Explore";
 import Search from "components/Search"
 import Profile from "components/Profile";
 import ProfileUpdateForm from "components/ProfileUpdateForm";
+import ResetPassword from "components/ResetPassword";
 
 const App = props => [
   props.isLoggedIn ? <Navigation key={11} /> : null,
@@ -35,7 +36,7 @@ const PrivateRoutes = props => (
 const PublicRoutes = props => (
   <Switch>
     <Route path="/" component={Auth} />,
-    <Route path="/recover" render={() => "recover password"} />
+    <Route exact path="/accounts/password/reset/" component={ResetPassword} />
   </Switch>
 );
 
