@@ -115,6 +115,7 @@ function usernameLogin(username, password) {
       .catch(err => console.log(err));
   };
 }
+
 function createAccount(username, password, email, name) {
   return dispatch => {
     fetch("/rest-auth/registration/", {
