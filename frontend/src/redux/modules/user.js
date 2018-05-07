@@ -134,7 +134,7 @@ function createAccount(username, password, email, name) {
       .then(response => response.json())
       .then(json => {
         if (json.token) {
-          dispatch(saveToken(json.token));
+          dispatch(saveToken(json));
         }
       })
       .catch(err => console.log(err));
