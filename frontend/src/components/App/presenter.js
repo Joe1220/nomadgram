@@ -36,7 +36,7 @@ const PrivateRoutes = props => (
 const PublicRoutes = props => (
   <Switch>
     <Route path="/" component={Auth} />
-    <Route exact path="/reset/" component={ResetPassword} />
+    <Route exact path="/reset" component={ResetPassword} />
   </Switch>
 );
 
