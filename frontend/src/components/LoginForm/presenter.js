@@ -41,11 +41,12 @@ const LoginForm = (props, context) => (
       icon="fa-facebook-official"
       textButton={context.t("Log in with Facebook")}
     />
-    <span className={formStyles.forgotLink}>
-      <Link to="/accounts/password/reset/">
+    <Link to="/reset">
+      <span 
+        className={formStyles.forgotLink}>
         {context.t("Forgot password?")}
-      </Link>
-    </span>
+      </span>
+    </Link>
   </div>
 );
 
