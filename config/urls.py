@@ -12,6 +12,7 @@ urlpatterns = [
     url(settings.ADMIN_URL, admin.site.urls),
 
     # User management
+    url(r'^', include('django.contrib.auth.urls')),
     url(r'^rest-auth/', include('rest_auth.urls')),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^users/', include('nomadgram.users.urls', namespace='users')),
