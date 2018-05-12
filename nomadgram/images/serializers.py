@@ -32,17 +32,28 @@ class FeedUserSerializer(serializers.ModelSerializer):
             'profile_image',
         )
 
+
 class CommentSerializer(serializers.ModelSerializer):
 
-    creator = FeedUserSerializer(read_only=True)
+  creator = FeedUserSerializer(read_only=True)
+  is_owner = serializers.SerializerMethodField()
 
-    class Meta:
-        model = models.Comment
-        fields = (
-            'id',
-            'message',
-            'creator',
-        )
+  class Meta:
+    model = models.Comment
+    fields = (
+        'id',
+        'message',
+        'creator',
+        'is_owner'
+    )
+
+  def get_is_owner(self, obj):
+    if 'request' in self.context:
+
+      request = self.context['request']
+      if obj.creator.id == request.user.id:
+        return True
+      return False
 
 class ImageSerializer(TaggitSerializer, serializers.ModelSerializer):
 
