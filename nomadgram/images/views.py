@@ -7,49 +7,58 @@ from nomadgram.users import serializers as user_serializers
 from nomadgram.notifications import views as notification_views
 
 class Images(APIView):
+  
+  def get(self, request, foramt=None):
 
-    def get(self, request, format=None):
+    user = request.user
 
-        user = request.user
+    following_users = user.following.all()
 
-        following_users = user.following.all()
+    image_list = []
 
-        image_list = []
+    for following_user in following_users:
 
-        for following_user in following_users:
+      user_images = following_user.images.all()[:2]
 
-            user_images = following_user.images.all()[:2]
-
-            for image in user_images:
-
-                image_list.append(image)
-
-        my_images = user.images.all()[:2]
-
-        for image in my_images:
-            
-            image_list.append(image)
-
-        sorted_list = sorted(image_list, key=lambda image: image.created_at, reverse=True)
-
-        serializer = serializers.ImageSerializer(sorted_list, many=True, context={'request': request})
-
-        return Response(serializer.data)
-
-    def post(self, request, format=None):
+      for image in user_images:
         
-        user = request.user
-        
-        serializer = serializers.ImageInputSerializer(data=request.data)
+        image_list.append(image)
 
-        if serializer.is_valid():
-            
-            serializer.save(creator=user)
+    my_images = user.images.all()[:2]
 
-            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
-        
-        else:
-            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    for image in my_images:
+      
+      image_list.append(image)
+    
+    # sorted_list = sorted(image_list, key=get_key, reverse=True)
+
+    sorted_list = sorted(
+      image_list, key=lambda x: x.created_at, reverse=True)
+
+    serializer = serializers.ImageSerializer(sorted_list, many=True, context={'request': request})
+
+    return Response(data=serializer.data)
+
+  def post(self, request, format=None):
+    
+    user = request.user
+    
+    serializer = serializers.InputImageSerializer(data=request.data)
+
+    if serializer.is_valid():
+
+      serializer.save(creator=user)
+
+      return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+
+    else:
+      
+      return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# def get_key(image):
+#   return image.created_at
+
 
 
 class LikeImage(APIView):

@@ -7,7 +7,7 @@ urlpatterns = [
     url(
         regex=r'^$',
         view=views.Images.as_view(),
-        name='feed'
+        name='Images'
     ),
     url(
         regex=r'^(?P<image_id>[0-9]+)/$',

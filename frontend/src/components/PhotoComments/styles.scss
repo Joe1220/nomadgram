@@ -3,11 +3,24 @@
   .list {
   }
 }
+
 .comment {
+  width: 100%;
   margin-bottom: 7px;
-  .username {
-    font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .column {
+    .username {
+      font-weight: 600;
   }
-  .message {
+    .message {
+    }
+  }
+  .deleteComment {
+    cursor: pointer;
+    @include breakpoint("phone") {
+      display: none;
+    }
   }
 }

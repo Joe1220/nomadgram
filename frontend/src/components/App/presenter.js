@@ -13,9 +13,9 @@ import ProfileUpdateForm from "components/ProfileUpdateForm";
 import ResetPassword from "components/ResetPassword";
 
 const App = props => [
-  props.isLoggedIn ? <Navigation key={11} /> : null,
-  props.isLoggedIn ? <PrivateRoutes key={12} /> : <PublicRoutes key={2} />,
-  <Footer key={13} />
+  props.isLoggedIn ? <Navigation key={1} /> : null,
+  props.isLoggedIn ? <PrivateRoutes key={2} /> : <PublicRoutes key={2} />,
+  <Footer key={4} />
 ];
 
 App.propTypes = {

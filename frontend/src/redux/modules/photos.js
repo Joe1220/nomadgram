@@ -8,6 +8,7 @@ const SET_FEED = "SET_FEED";
 const LIKE_PHOTO = "LIKE_PHOTO";
 const UNLIKE_PHOTO = "UNLIKE_PHOTO";
 const ADD_COMMENT = "ADD_COMMENT";
+const DELETE_COMMENT = "DELETE_COMMENT";
 
 // action creators
 
@@ -40,6 +41,14 @@ function addComment(photoId, comment) {
   };
 }
 
+function delComment(photoId, commentId) {
+  return {
+    type: DELETE_COMMENT,
+    photoId,
+    commentId
+  };
+}
+
 // API Actions
 
 function getFeed() {
@@ -52,15 +61,15 @@ function getFeed() {
         Authorization: `JWT ${token}`
       }
     })
-      .then(response => {
-        if (response.status === 401) {
-          dispatch(userActions.logout());
-        }
-        return response.json();
-      })
-      .then(json => {
-        dispatch(setFeed(json));
-      });
+    .then(response => {
+      if (response.status === 401) {
+        dispatch(userActions.logout());
+      }
+      return response.json();
+    })
+    .then(json => {
+      dispatch(setFeed(json));
+    });
   };
 }
 
@@ -134,6 +143,25 @@ function commentPhoto(photoId, message) {
       });
   };
 }
+
+function deleteComment(photoId, commentId) {
+  return (dispatch, getState) => {
+    dispatch(delComment(photoId, commentId));
+    const { user: { token } } = getState();
+    fetch(`/images/${photoId}/comments/${commentId}/`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    })
+    .then(response => {
+      if (response.status === 401 || !response.ok) {
+        dispatch(userActions.logout());
+      }
+    });
+  };
+}
+
 // Initial State
 
 const initialState = {};
@@ -150,6 +178,8 @@ function reducer(state = initialState, action) {
       return applyUnlikePhoto(state, action);
     case ADD_COMMENT:
       return applyAddComment(state, action);
+    case DELETE_COMMENT:
+      return applyDeleteComment(state, action);
     default:
       return state;
   }
@@ -203,13 +233,31 @@ function applyAddComment(state, action) {
   });
   return { ...state, feed: updatedFeed };
 }
+
+function applyDeleteComment(state, action) {
+  const { photoId, commentId } = action;
+  const { feed } = state;
+  const updatedFeed = feed.map(photo => {
+    if (photo.id === photoId) {
+      const updatedComments = photo.comments.filter(comment => {
+        return comment.id !== commentId;
+      });
+      return { ...photo, comments: updatedComments }
+    }
+    return photo;
+  });
+  return { ...state, feed: updatedFeed };
+}
+
+
 // Exports
 
 const actionCreators = {
   getFeed,
   likePhoto,
   unlikePhoto,
-  commentPhoto
+  commentPhoto,
+  deleteComment
 };
 
 export { actionCreators };
