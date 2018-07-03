@@ -25,18 +25,18 @@ App.propTypes = {
 const PrivateRoutes = props => (
   <Switch>
     <Route exact path="/" component={Feed} />
-    <Route path="/explore/" component={Explore} />
-    <Route path="/search/:searchTerm/" component={Search} />
-    <Route path="/:username/" component={Profile} />
-    <Route path="/:username/profile/" component={ProfileUpdateForm} />
-    <Route path="/:username/password/" component={ProfileUpdateForm} />
+    <Route exact path="/explore/" component={Explore} />
+    <Route exact path="/search/:searchTerm/" component={Search} />
+    <Route exact path="/:username/" component={Profile} />
+    <Route exact path="/:username/profile/" component={ProfileUpdateForm} />
+    <Route exact path="/:username/password/" component={ProfileUpdateForm} />
   </Switch>
 );
 
 const PublicRoutes = props => (
   <Switch>
     <Route exact path="/" component={Auth} />
-    <Route path="/reset" component={ResetPassword} />
+    <Route exact path="/reset" component={ResetPassword} />
   </Switch>
 );
 

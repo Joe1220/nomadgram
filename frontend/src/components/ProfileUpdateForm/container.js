@@ -31,9 +31,9 @@ class Container extends Component {
   }
   _renderPath = () => {
     const { path } = this.props.match;
-    if (path === "/:username/profile") {
+    if (path === "/:username/profile/") {
       this._editProfileFunc();
-    } else if ("/:username/password") {
+    } else if ("/:username/password/") {
       this._editPasswordFunc();
     }
   };

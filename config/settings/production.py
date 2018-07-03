@@ -133,7 +133,12 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [  # noqa F405
 # SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 # # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
 # EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[Nomadgram]')
-
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'joe1220@daum.net'
+EMAIL_HOST_PASSWORD = 'c159789c'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'joe1220 <joe1220@daum.net>'
 # # Anymail (Mailgun)
 # # ------------------------------------------------------------------------------
 # # https://anymail.readthedocs.io/en/stable/installation/#installing-anymail
