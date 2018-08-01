@@ -306,7 +306,6 @@ nomadgram/media/
 
 
 
-# Elastic Beanstalk Files
 
 .elasticbeanstalk/*
 
@@ -314,3 +313,9 @@ nomadgram/media/
 
 !.elasticbeanstalk/*.global.yml
 
+
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
