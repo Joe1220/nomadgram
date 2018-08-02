@@ -52,11 +52,21 @@ coverage.xml
 # Django stuff:
 staticfiles/
 
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
 # Sphinx documentation
 docs/_build/
 
 # PyBuilder
 target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
 
 # pyenv
 .python-version
@@ -64,10 +74,19 @@ target/
 # celery beat schedule file
 celerybeat-schedule
 
+# SageMath parsed files
+*.sage.py
+
 # Environments
+.env
 .venv
+env/
 venv/
 ENV/
+
+# Spyder project settings
+.spyderproject
+.spyproject
 
 # Rope project settings
 .ropeproject
@@ -281,37 +300,10 @@ pyvenv.cfg
 pip-selfcheck.json
 
 
+mailhog
 
 
 nomadgram/media/
-
-
-
-
-
-.elasticbeanstalk/*
-
-!.elasticbeanstalk/*.cfg.yml
-
-!.elasticbeanstalk/*.global.yml
-
-
-
-
-.elasticbeanstalk/*
-
-!.elasticbeanstalk/*.cfg.yml
-
-!.elasticbeanstalk/*.global.yml
-
-
-
-
-.elasticbeanstalk/*
-
-!.elasticbeanstalk/*.cfg.yml
-
-!.elasticbeanstalk/*.global.yml
 
 
 
