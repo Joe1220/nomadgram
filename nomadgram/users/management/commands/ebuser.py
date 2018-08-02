@@ -7,4 +7,4 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         User = get_user_model()
-        User.objects.create_superuser('joe1220', 'joe1220@daum.com', 'c159789c')
+        User.objects.create_superuser('admin', 'admin@example.com', 'pass')
