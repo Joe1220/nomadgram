@@ -19,7 +19,7 @@ class Container extends Component {
         handleInputChange={this._handleInputChange}
         handleSubmit={this._handleSubmit}
         handleFacebookLogin={this._handleFacebookLogin}
-        handleGooglLogin={this._handleGoogleLogin}
+        handleGoogleLogin={this._handleGoogleLogin}
         usernameValue={username}
         passwordValue={password}
       />

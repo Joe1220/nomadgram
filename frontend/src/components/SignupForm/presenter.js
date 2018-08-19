@@ -14,7 +14,7 @@ const SignupForm = (props, context) => (
       clientId="470628051393-6l270us6mnmj6g0m5o4muu90sns2v7er.apps.googleusercontent.com"
       buttonText="Google Login"
       className={formStyles.GoogleLogin}
-      onSuccess={props.handleGoogleLogin}
+      onSuccess={props.handleGooglLogin}
     />
     <span className={formStyles.divider}>or</span>
     <form className={formStyles.form} onSubmit={props.handleSubmit}>
