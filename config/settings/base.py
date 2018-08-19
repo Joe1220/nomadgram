@@ -67,6 +67,7 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
     'rest_framework',
     'rest_framework.authtoken',
     'taggit',
@@ -299,6 +300,15 @@ SOCIALACCOUNT_PROVIDERS = {
         #'LOCALE_FUNC': 'path.to.callable',
         'VERIFIED_EMAIL': True,
         'VERSION': 'v2.4'
+    },
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
     }
 }
 

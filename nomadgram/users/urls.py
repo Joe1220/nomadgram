@@ -48,4 +48,9 @@ urlpatterns = [
         view=views.FacebookLogin.as_view(),
         name='fb_login',
     ),
+    url(
+        regex=r'^login/google/$',
+        view=views.GoogleLogin.as_view(),
+        name='fb_login',
+    ),
 ]
