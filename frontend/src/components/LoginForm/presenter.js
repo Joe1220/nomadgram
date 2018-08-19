@@ -1,7 +1,8 @@
 import React from "react";
 // import Ionicon from "react-ionicons";
 import formStyles from "shared/formStyles.scss";
-import FacebookLogin from "react-facebook-login";
+// import FacebookLogin from "react-facebook-login";
+import GoogleLogin from 'react-google-login';
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 
@@ -32,14 +33,11 @@ const LoginForm = (props, context) => (
       />
     </form>
     <span className={formStyles.divider}>or</span>
-    <FacebookLogin
-      appId="155702698444190"
-      autoLoad={false}
-      fields="name,email,picture"
-      callback={props.handleFacebookLogin}
-      cssClass={formStyles.facebookLink}
-      icon="fa-facebook-official"
-      textButton={context.t("Log in with Facebook")}
+    <GoogleLogin
+      clientId="470628051393-6l270us6mnmj6g0m5o4muu90sns2v7er.apps.googleusercontent.com"
+      buttonText="Google Login"
+      className={formStyles.GoogleLogin}
+      onSuccess={props.handleGoogleLogin}
     />
     <Link to="/reset">
       <span 
@@ -55,7 +53,8 @@ LoginForm.prototype = {
   password: propTypes.string.isRequired,
   handleInputChange: propTypes.func.isRequired,
   handleSubmit: propTypes.func.isRequired,
-  handleFacebookLogin: propTypes.func.isRequire
+  handleFacebookLogin: propTypes.func.isRequire,
+  handleGoogleLogin: propTypes.func.isRequired
 };
 
 LoginForm.contextTypes = {

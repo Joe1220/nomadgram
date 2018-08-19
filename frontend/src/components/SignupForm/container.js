@@ -11,6 +11,7 @@ class Container extends Component {
   };
   static propTypes = {
     facebookLogin: propTypes.func.isRequired,
+    googleLogin: propTypes.func.isRequired,
     createAccount: propTypes.func.isRequired
   };
   render() {
@@ -20,6 +21,7 @@ class Container extends Component {
         handleInputChange={this._handleInputChange}
         handleSubmit={this._handleSubmit}
         handleFacebookLogin={this._handleFacebookLogin}
+        handleGooglLogin={this._handleGoogleLogin}
         emailValue={email}
         nameValue={name}
         usernameValue={username}
@@ -42,6 +44,10 @@ class Container extends Component {
   _handleFacebookLogin = response => {
     const { facebookLogin } = this.props;
     facebookLogin(response.accessToken);
+  };
+  _handleGoogleLogin = response => {
+    const { googleLogin } = this.props;
+    googleLogin(response.accessToken);
   };
 }
 

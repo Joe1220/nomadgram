@@ -94,6 +94,27 @@ function facebookLogin(access_token) {
   };
 }
 
+function googleLogin(access_token) {
+  return function(dispatch) {
+    fetch("/users/login/google/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        access_token
+      })
+    })
+      .then(response => response.json())
+      .then(json => {
+        if (json.token) {
+          dispatch(saveToken(json));
+        }
+      })
+      .catch(err => console.log(err));
+  };
+}
+
 function usernameLogin(username, password) {
   return function(dispatch) {
     fetch("/rest-auth/login/", {
@@ -516,6 +537,7 @@ function applySetProfile(state, action) {
 
 const actionCreators = {
   facebookLogin,
+  googleLogin,
   usernameLogin,
   createAccount,
   logout,

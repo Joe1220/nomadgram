@@ -1,6 +1,7 @@
 import React from "react";
 // import Ionicon from "react-ionicons";
-import FacebookLogin from "react-facebook-login";
+// import FacebookLogin from "react-facebook-login";
+import GoogleLogin from 'react-google-login';
 import formStyles from "shared/formStyles.scss";
 import propTypes from "prop-types";
 
@@ -9,14 +10,11 @@ const SignupForm = (props, context) => (
     <h3 className={formStyles.signupHeader}>
       Sign up to see photos and videos from your friends.
     </h3>
-    <FacebookLogin
-      appId="155702698444190"
-      autoLoad={false}
-      fields="name,email,picture"
-      callback={props.handleFacebookLogin}
-      cssClass={formStyles.facebookLink}
-      icon="fa-facebook-official"
-      textButton={context.t("Log in with Facebook")}
+    <GoogleLogin
+      clientId="470628051393-6l270us6mnmj6g0m5o4muu90sns2v7er.apps.googleusercontent.com"
+      buttonText="Google Login"
+      className={formStyles.GoogleLogin}
+      onSuccess={props.handleGoogleLogin}
     />
     <span className={formStyles.divider}>or</span>
     <form className={formStyles.form} onSubmit={props.handleSubmit}>
@@ -64,6 +62,7 @@ SignupForm.propTypes = {
   handleInputChange: propTypes.func.isRequired,
   handleSubmit: propTypes.func.isRequired,
   handleFacebookLogin: propTypes.func.isRequired,
+  handleGoogleLogin: propTypes.func.isRequired,
   emailValue: propTypes.string.isRequired,
   nameValue: propTypes.string.isRequired,
   usernameValue: propTypes.string.isRequired,
