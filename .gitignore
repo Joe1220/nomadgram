@@ -311,3 +311,7 @@ nomadgram/media/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# lock
+package-lock.json
+yarn.lock
